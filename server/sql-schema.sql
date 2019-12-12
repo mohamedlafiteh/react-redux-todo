@@ -10,3 +10,5 @@ CREATE TABLE tasks
     completed boolean
 );
 
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mohamed;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO mohamed;
