@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 
 const getTasks = require("./getTasks/getTasks.js");
 const createTask = require("./createTask/createTask.js");
-const deleteTask = require("./deleteTask/deleteTask");
+const deleteTask = require("./deleteTask/deleteTask.js");
+const getTaskById = require("./getTaskById/getTaskById.js");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -45,6 +46,13 @@ app.delete("/tasks/:taskId", (req, res) => {
   const taskId = Number(req.params.taskId);
   console.log(taskId);
   return deleteTask(taskId).then(data => {
+    res.status(200).json(data);
+  });
+});
+
+app.get("/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  return getTaskById(id).then(data => {
     res.status(200).json(data);
   });
 });
