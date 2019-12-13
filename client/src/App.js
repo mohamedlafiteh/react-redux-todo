@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import "./App.css";
 import Todos from "./components/Todos";
+import AddTodoForm from "./components/AddTodoForm";
 
 class App extends React.Component {
   state = {
@@ -48,10 +49,33 @@ class App extends React.Component {
         console.log(err);
       });
   };
+
+  addTodo = title => {
+    console.log(title);
+    const newTodo = {
+      method: "POST",
+      body: JSON.stringify({
+        title: title,
+        completed: false
+      }),
+      headers: { "content-type": "application/json" }
+    };
+    console.log(newTodo);
+    fetch("http://localhost:3006/tasks", newTodo)
+      .then(res => res.json())
+      .then(data => {
+        this.componentDidMount();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
         <Navbar />
+        <AddTodoForm addTodo={this.addTodo} />
         <Todos
           todos={this.state.todos}
           handleChange={this.handleChange}
