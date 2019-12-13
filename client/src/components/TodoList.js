@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./TodoList.css";
+import { Button } from "semantic-ui-react";
 
 export class TodoList extends Component {
   getStyle = () => {
@@ -16,13 +17,18 @@ export class TodoList extends Component {
           type='checkbox'
           onChange={this.props.handleChange.bind(this, id)}
         />
-        <p>{title}</p>
-        <button
+
+        <p style={{ color: "black", fontSize: "15px", fontWeight: "bold" }}>
+          {title}
+        </p>
+
+        <Button
+          primary
           onClick={this.props.handleDelete.bind(this, id)}
           className='btn'
         >
           Delete
-        </button>
+        </Button>
       </div>
     );
   }

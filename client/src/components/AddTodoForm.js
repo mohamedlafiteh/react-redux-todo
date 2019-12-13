@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Input } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 export class AddTodoForm extends Component {
   state = {
@@ -20,12 +22,13 @@ export class AddTodoForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
+        <Input
           type='text'
           value={this.state.title}
           onChange={this.handleNewTitleChange}
+          placeholder='Add a new todo ...'
         />
-        <button>Submit</button>
+        <Button primary>Submit</Button>
       </form>
     );
   }

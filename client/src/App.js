@@ -1,86 +1,20 @@
-import React from "react";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import "./App.css";
-import Todos from "./components/Todos";
-import AddTodoForm from "./components/AddTodoForm";
+import Main from "./Main";
+import About from "./components/About";
 
-class App extends React.Component {
-  state = {
-    todos: []
-  };
-
-  componentDidMount() {
-    this.getTodos();
-  }
-  getTodos = () => {
-    fetch("http://localhost:3006/tasks")
-      .then(res => res.json())
-      .then(tasks => {
-        this.setState({
-          todos: tasks
-        });
-      });
-  };
-
-  handleChange = id => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-    });
-  };
-  handleDelete = id => {
-    const deleteTodoRequest = {
-      method: "DELETE",
-      body: JSON.stringify({
-        id: id
-      }),
-      headers: { "content-type": "application/json" }
-    };
-    fetch(`http://localhost:3006/tasks/${id}`, deleteTodoRequest)
-      .then(res => res.json())
-      .then(message => {
-        this.componentDidMount();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  addTodo = title => {
-    console.log(title);
-    const newTodo = {
-      method: "POST",
-      body: JSON.stringify({
-        title: title,
-        completed: false
-      }),
-      headers: { "content-type": "application/json" }
-    };
-    console.log(newTodo);
-    fetch("http://localhost:3006/tasks", newTodo)
-      .then(res => res.json())
-      .then(data => {
-        this.componentDidMount();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
+export class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
-        <AddTodoForm addTodo={this.addTodo} />
-        <Todos
-          todos={this.state.todos}
-          handleChange={this.handleChange}
-          handleDelete={this.handleDelete}
-        />
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Main} />
+            <Route exact path='/About' component={About} />
+          </Switch>
+        </Router>
       </div>
     );
   }

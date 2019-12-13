@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
 import "./Todos.css";
-import pic from "./pic.jpg";
+import pic from "./back.jpeg";
 
 export class Todos extends Component {
   render() {
