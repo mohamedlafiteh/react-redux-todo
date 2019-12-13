@@ -31,11 +31,32 @@ class App extends React.Component {
       })
     });
   };
+  handleDelete = id => {
+    const deleteTodoRequest = {
+      method: "DELETE",
+      body: JSON.stringify({
+        id: id
+      }),
+      headers: { "content-type": "application/json" }
+    };
+    fetch(`http://localhost:3006/tasks/${id}`, deleteTodoRequest)
+      .then(res => res.json())
+      .then(message => {
+        this.componentDidMount();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   render() {
     return (
       <div>
         <Navbar />
-        <Todos todos={this.state.todos} handleChange={this.handleChange} />
+        <Todos
+          todos={this.state.todos}
+          handleChange={this.handleChange}
+          handleDelete={this.handleDelete}
+        />
       </div>
     );
   }

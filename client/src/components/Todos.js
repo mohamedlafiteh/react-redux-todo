@@ -10,6 +10,7 @@ export class Todos extends Component {
         {this.props.todos.map(todos => {
           return (
             <TodoList
+              handleDelete={this.props.handleDelete}
               handleChange={this.props.handleChange}
               key={todos.id}
               todos={todos}

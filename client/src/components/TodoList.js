@@ -17,7 +17,12 @@ export class TodoList extends Component {
           onChange={this.props.handleChange.bind(this, id)}
         />
         <p>{title}</p>
-        <button className='btn'>Delete</button>
+        <button
+          onClick={this.props.handleDelete.bind(this, id)}
+          className='btn'
+        >
+          Delete
+        </button>
       </div>
     );
   }
