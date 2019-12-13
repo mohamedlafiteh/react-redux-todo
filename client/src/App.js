@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./components/Navbar";
+import "./App.css";
+import Todos from "./components/Todos";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    todos: []
+  };
+
+  componentDidMount() {
+    this.getTodos();
+  }
+  getTodos = () => {
+    fetch("http://localhost:3006/tasks")
+      .then(res => res.json())
+      .then(tasks => {
+        this.setState({
+          todos: tasks
+        });
+      });
+  };
+
+  handleChange = id => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
+  };
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <Todos todos={this.state.todos} handleChange={this.handleChange} />
+      </div>
+    );
+  }
 }
 
 export default App;
