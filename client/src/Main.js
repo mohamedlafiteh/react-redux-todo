@@ -20,16 +20,16 @@ class Main extends React.Component {
       });
   };
 
-  // handleChange = id => {
-  //   this.setState({
-  //     todos: this.state.todos.map(todo => {
-  //       if (todo.id === id) {
-  //         todo.completed = !todo.completed;
-  //       }
-  //       return todo;
-  //     })
-  //   });
-  // };
+  handleChange = id => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
+  };
   // handleDelete = id => {
   //   const deleteTodoRequest = {
   //     method: "DELETE",
@@ -75,7 +75,7 @@ class Main extends React.Component {
         <AddTodoForm />
         <Todos
           todos={this.state.todos}
-          // handleChange={this.handleChange}
+          handleChange={this.handleChange}
           // handleDelete={this.handleDelete}
         />
       </div>

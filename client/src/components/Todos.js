@@ -49,6 +49,7 @@ export class Todos extends Component {
                   id={todos.id}
                   title={todos.title}
                   completed={todos.completed}
+                  handleChange={this.props.handleChange}
                 />
               );
             }
