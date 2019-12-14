@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import "./TodoList.css";
-import { Table, Button } from "semantic-ui-react";
+import { Table, Button, Checkbox } from "semantic-ui-react";
 
-export const TodoList = ({ id, title, completed, editRow }) => {
+export const TodoList = ({ id, title, editRow }) => {
   return (
     <Table.Row>
       <Table.Cell>{id}</Table.Cell>
+      <Table.Cell>
+        {" "}
+        <Checkbox />
+      </Table.Cell>
       <Table.Cell>{title}</Table.Cell>
-      <Table.Cell>{completed}</Table.Cell>
+
       <Table.Cell>Delete</Table.Cell>
       <Table.Cell>
         <Button primary onClick={() => editRow(id)}>

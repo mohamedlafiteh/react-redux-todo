@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Button, Input } from "semantic-ui-react";
+import { Table, Button, Input, Checkbox } from "semantic-ui-react";
 
 export class EditableRow extends Component {
   state = {
@@ -23,6 +23,10 @@ export class EditableRow extends Component {
     return (
       <Table.Row>
         <Table.Cell>{this.props.id}</Table.Cell>
+        <Table.Cell>
+          {" "}
+          <Checkbox />
+        </Table.Cell>
         <Table.Cell>
           <Input
             focus

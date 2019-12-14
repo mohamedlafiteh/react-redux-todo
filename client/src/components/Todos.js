@@ -21,8 +21,9 @@ export class Todos extends Component {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>ID</Table.HeaderCell>
-            <Table.HeaderCell>Task</Table.HeaderCell>
             <Table.HeaderCell>Completed</Table.HeaderCell>
+            <Table.HeaderCell>Task</Table.HeaderCell>
+
             <Table.HeaderCell>Edit</Table.HeaderCell>
             <Table.HeaderCell>Delete</Table.HeaderCell>
           </Table.Row>
