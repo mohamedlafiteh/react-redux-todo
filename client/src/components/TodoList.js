@@ -1,37 +1,21 @@
 import React, { Component } from "react";
 import "./TodoList.css";
-import { Button } from "semantic-ui-react";
+import { Table, Button } from "semantic-ui-react";
 
-export class TodoList extends Component {
-  getStyle = () => {
-    return {
-      padding: "10px",
-      textDecoration: this.props.todos.completed ? "line-through" : "none"
-    };
-  };
-  render() {
-    const { id, title } = this.props.todos;
-    return (
-      <div style={this.getStyle()}>
-        <input
-          type='checkbox'
-          onChange={this.props.handleChange.bind(this, id)}
-        />
-
-        <p style={{ color: "black", fontSize: "15px", fontWeight: "bold" }}>
-          {title}
-        </p>
-
-        <Button
-          primary
-          onClick={this.props.handleDelete.bind(this, id)}
-          className='btn'
-        >
-          Delete
+export const TodoList = ({ id, title, completed, editRow }) => {
+  return (
+    <Table.Row>
+      <Table.Cell>{id}</Table.Cell>
+      <Table.Cell>{title}</Table.Cell>
+      <Table.Cell>{completed}</Table.Cell>
+      <Table.Cell>Delete</Table.Cell>
+      <Table.Cell>
+        <Button primary onClick={() => editRow(id)}>
+          Edit
         </Button>
-      </div>
-    );
-  }
-}
+      </Table.Cell>
+    </Table.Row>
+  );
+};
 
 export default TodoList;
