@@ -1,6 +1,9 @@
 import React from "react";
+import Navbar from "./components/Navbar";
+import "./App.css";
 import Todos from "./components/Todos";
 import AddTodoForm from "./components/AddTodoForm";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends React.Component {
   state = {

@@ -32,9 +32,9 @@ app.get("/tasks", (req, res) => {
 
 app.post("/tasks", (req, res) => {
   const title = req.body.title;
-  const completed = Boolean(req.body.completed);
+  const completed = req.body.completed;
 
-  if (title.length > 0 && completed) {
+  if (title.length > 0) {
     return createTask(title, completed).then(data => {
       res.status(200).json(data);
     });
@@ -45,7 +45,7 @@ app.post("/tasks", (req, res) => {
 
 app.delete("/tasks/:taskId", (req, res) => {
   const taskId = Number(req.params.taskId);
-  console.log(taskId);
+
   return deleteTask(taskId).then(data => {
     res.status(200).json(data);
   });
