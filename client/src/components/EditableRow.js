@@ -45,7 +45,7 @@ export class EditableRow extends Component {
             onChange={this.onChangeValue}
           />
         </Table.Cell>
-        <Table.Cell>Delete</Table.Cell>
+
         <Table.Cell>
           <Button primary onClick={this.saveChange}>
             Save

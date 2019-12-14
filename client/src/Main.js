@@ -49,31 +49,31 @@ class Main extends React.Component {
       });
   };
 
-  // addTodo = title => {
-  //   console.log(title);
-  //   const newTodo = {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       title: title,
-  //       completed: false
-  //     }),
-  //     headers: { "content-type": "application/json" }
-  //   };
-  //   console.log(newTodo);
-  //   fetch("http://localhost:3006/tasks", newTodo)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       this.componentDidMount();
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
+  addTodo = title => {
+    console.log(title);
+    const newTodo = {
+      method: "POST",
+      body: JSON.stringify({
+        title: title,
+        completed: false
+      }),
+      headers: { "content-type": "application/json" }
+    };
+
+    fetch("http://localhost:3006/tasks", newTodo)
+      .then(res => res.json())
+      .then(data => {
+        this.componentDidMount();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
       <div>
-        <AddTodoForm />
+        <AddTodoForm addTodo={this.addTodo} />
         <Todos
           todos={this.state.todos}
           handleChange={this.handleChange}

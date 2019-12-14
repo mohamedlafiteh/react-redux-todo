@@ -22,15 +22,14 @@ export const TodoList = ({
       >
         {title}
       </Table.Cell>
-
-      <Table.Cell>
-        <Button onClick={() => handleDelete(id)} primary>
-          Delete
-        </Button>
-      </Table.Cell>
       <Table.Cell>
         <Button primary onClick={() => editRow(id)}>
           Edit
+        </Button>
+      </Table.Cell>
+      <Table.Cell>
+        <Button onClick={() => handleDelete(id)} primary>
+          Delete
         </Button>
       </Table.Cell>
     </Table.Row>

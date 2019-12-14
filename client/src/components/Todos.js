@@ -7,10 +7,11 @@ import { Table } from "semantic-ui-react";
 
 export class Todos extends Component {
   state = {
-    selectedId: null
+    selectedId: null,
+    selected: false
   };
   editRow = id => {
-    this.setState({ selectedId: id });
+    this.setState({ selectedId: id, selected: true });
   };
   saveRow = (id, task) => {
     console.log(id, task);
@@ -21,11 +22,16 @@ export class Todos extends Component {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>ID</Table.HeaderCell>
+
             <Table.HeaderCell>Completed</Table.HeaderCell>
             <Table.HeaderCell>Task</Table.HeaderCell>
 
             <Table.HeaderCell>Edit</Table.HeaderCell>
-            <Table.HeaderCell>Delete</Table.HeaderCell>
+            {this.state.selected ? (
+              <Table.HeaderCell>Save</Table.HeaderCell>
+            ) : (
+              <Table.HeaderCell>Delete</Table.HeaderCell>
+            )}
           </Table.Row>
         </Table.Header>
 
