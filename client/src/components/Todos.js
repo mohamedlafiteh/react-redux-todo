@@ -50,6 +50,7 @@ export class Todos extends Component {
                   title={todos.title}
                   completed={todos.completed}
                   handleChange={this.props.handleChange}
+                  handleDelete={this.props.handleDelete}
                 />
               );
             }

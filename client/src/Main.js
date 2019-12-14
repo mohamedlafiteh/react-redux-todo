@@ -30,23 +30,24 @@ class Main extends React.Component {
       })
     });
   };
-  // handleDelete = id => {
-  //   const deleteTodoRequest = {
-  //     method: "DELETE",
-  //     body: JSON.stringify({
-  //       id: id
-  //     }),
-  //     headers: { "content-type": "application/json" }
-  //   };
-  //   fetch(`http://localhost:3006/tasks/${id}`, deleteTodoRequest)
-  //     .then(res => res.json())
-  //     .then(message => {
-  //       this.componentDidMount();
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
+  handleDelete = id => {
+    console.log(id);
+    const deleteTodoRequest = {
+      method: "DELETE",
+      body: JSON.stringify({
+        id: id
+      }),
+      headers: { "content-type": "application/json" }
+    };
+    fetch(`http://localhost:3006/tasks/${id}`, deleteTodoRequest)
+      .then(res => res.json())
+      .then(message => {
+        this.componentDidMount();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   // addTodo = title => {
   //   console.log(title);
@@ -76,7 +77,7 @@ class Main extends React.Component {
         <Todos
           todos={this.state.todos}
           handleChange={this.handleChange}
-          // handleDelete={this.handleDelete}
+          handleDelete={this.handleDelete}
         />
       </div>
     );
