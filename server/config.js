@@ -1,8 +1,8 @@
 const config = {
-  user: "mohamed",
+  user: "",
   host: "localhost",
   database: "react_redux_todo",
-  password: "mohamed",
+  password: "",
   port: 5432
 };
 

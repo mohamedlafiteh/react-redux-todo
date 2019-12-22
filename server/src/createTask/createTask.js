@@ -3,6 +3,10 @@ const config = require("../../config");
 const pool = new Pool(config);
 
 const createTask = (title, completed) => {
+  /**
+   * TODO: all below can be rewritten using pool.query with promises 
+   * not with callback.
+   */
   const sqlQuery =
     "INSERT INTO tasks (title,completed) VALUES($1,$2) RETURNING *";
   return new Promise((resolve, reject) => {
