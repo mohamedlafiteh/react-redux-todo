@@ -14,7 +14,10 @@ export const TodoList = ({
     <Table.Row>
       <Table.Cell>{id}</Table.Cell>
       <Table.Cell>
-        {" "}
+        {/**
+         * TODO: if the todo is completed, the checkbox should also be checked by default
+         * So you probably need to use the completed variable in the Checkbox component below.
+         */}
         <Checkbox onClick={() => handleChange(id)} />
       </Table.Cell>
       <Table.Cell

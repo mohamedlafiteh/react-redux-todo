@@ -10,6 +10,7 @@ export class Todos extends Component {
     selectedId: null,
     selected: false
   };
+
   editRow = id => {
     this.setState({ selectedId: id, selected: true });
   };
@@ -34,9 +35,21 @@ export class Todos extends Component {
         </Table.Header>
 
         <Table.Body>
+          {/**
+           * TODO: you should create a function to order all your todos
+           * by descending id and call it here: 
+           * this.sortByDescendingId(this.props.todos).map(...) for example
+           */}
           {this.props.todos.map(todos => {
             if (todos.id === this.state.selectedId) {
               return (
+                /**
+                 * TODO: here you need to make sure that when you call the saveRow
+                 * inside the EditabelRow component, that it reset the selectedId 
+                 * state in this component.
+                 * so you need to pass a function which calls both this.props.saveRow and 
+                 * also setState to reset selectedId to null here.
+                 */
                 <EditableRow
                   saveRow={this.props.saveRow}
                   id={todos.id}
