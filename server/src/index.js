@@ -21,6 +21,7 @@ app.listen(PORT, () => {
 app.get("/tasks", (req, res) => {
   const tasks = getTasks()
     .then(data => {
+      console.log("this is data", data);
       res.status(200).json(data);
 
       return tasks;

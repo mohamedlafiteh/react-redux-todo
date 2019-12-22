@@ -18,6 +18,7 @@ class Main extends React.Component {
           todos: tasks
         });
       });
+    console.log(this.state.todos);
   };
 
   handleChange = id => {
@@ -31,7 +32,6 @@ class Main extends React.Component {
     });
   };
   handleDelete = id => {
-    console.log(id);
     const deleteTodoRequest = {
       method: "DELETE",
       body: JSON.stringify({
@@ -50,7 +50,6 @@ class Main extends React.Component {
   };
 
   addTodo = title => {
-    console.log(title);
     const newTodo = {
       method: "POST",
       body: JSON.stringify({
@@ -70,11 +69,27 @@ class Main extends React.Component {
       });
   };
 
+  saveRow = (id, task) => {
+    const updateTasks = {
+      method: "PUT",
+      body: JSON.stringify({
+        id: id,
+        title: task
+      }),
+      headers: { "content-type": "application/json" }
+    };
+    fetch(`http://localhost:3006/tasks/${id}`, updateTasks)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+  };
   render() {
     return (
       <div>
         <AddTodoForm addTodo={this.addTodo} />
         <Todos
+          saveRow={this.saveRow}
           todos={this.state.todos}
           handleChange={this.handleChange}
           handleDelete={this.handleDelete}

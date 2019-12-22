@@ -4,7 +4,15 @@ const pool = new Pool(config);
 
 const getTasks = () => {
   const sqlQuery = "SELECT * FROM tasks";
-  return pool.query(sqlQuery).then(result => result.rows);
+  return new Promise((resolve, reject) => {
+    pool.query(sqlQuery, (error, result) => {
+      if (error) {
+        return reject(error);
+      }
+
+      resolve(result.rows);
+    });
+  });
 };
 
 module.exports = getTasks;

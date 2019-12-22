@@ -13,9 +13,7 @@ export class Todos extends Component {
   editRow = id => {
     this.setState({ selectedId: id, selected: true });
   };
-  saveRow = (id, task) => {
-    console.log(id, task);
-  };
+
   render() {
     return (
       <Table celled inverted style={backGroundPic}>
@@ -40,9 +38,9 @@ export class Todos extends Component {
             if (todos.id === this.state.selectedId) {
               return (
                 <EditableRow
-                  saveRow={this.saveRow}
+                  saveRow={this.props.saveRow}
                   id={todos.id}
-                  task={todos.task}
+                  task={todos.title}
                   completed={todos.completed}
                   key={todos.id}
                 />

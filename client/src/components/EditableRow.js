@@ -3,7 +3,6 @@ import { Table, Button, Input, Checkbox } from "semantic-ui-react";
 
 export class EditableRow extends Component {
   state = {
-    completedEdit: this.props.completed,
     taskEdit: this.props.task
   };
 
@@ -18,8 +17,12 @@ export class EditableRow extends Component {
       this.state.taskEdit,
       this.props.completedEdit
     );
+    this.setState({
+      taskEdit: ""
+    });
   };
   render() {
+    console.log(this.state.taskEdit);
     return (
       <Table.Row>
         <Table.Cell>{this.props.id}</Table.Cell>
@@ -33,15 +36,6 @@ export class EditableRow extends Component {
             type='text'
             name='task'
             value={this.state.taskEdit}
-            onChange={this.onChangeValue}
-          />
-        </Table.Cell>
-        <Table.Cell>
-          {" "}
-          <Input
-            type='text'
-            name='completed'
-            value={this.state.completedEdit}
             onChange={this.onChangeValue}
           />
         </Table.Cell>
