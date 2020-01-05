@@ -6,7 +6,7 @@ DROP TABLE if exists tasks;
 CREATE TABLE tasks
 (
     id SERIAL PRIMARY KEY ,
-    title VARCHAR(30) NOT NULL,
+    title VARCHAR(150) NOT NULL,
     completed boolean
 );
 

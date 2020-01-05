@@ -18,13 +18,12 @@ app.listen(PORT, () => {
   console.log(`listen to port${PORT}`);
 });
 
-app.get("/tasks", (req, res) => {
-  const tasks = getTasks()
+app.get("/", (req, res) => {
+  getTasks()
     .then(data => {
-      console.log("this is data", data);
       res.status(200).json(data);
 
-      return tasks;
+      // return tasks;
     })
     .catch(err => {
       res.status(400).send(err);
@@ -35,7 +34,7 @@ app.post("/tasks", (req, res) => {
   const title = req.body.title;
   const completed = req.body.completed;
 
-  if (title.length > 0) {
+  if (title.length > 0 && title.length <= 150) {
     return createTask(title, completed).then(data => {
       res.status(200).json(data);
     });
@@ -53,16 +52,25 @@ app.delete("/tasks/:taskId", (req, res) => {
 });
 
 app.get("/tasks/:id", (req, res) => {
-  const id = Number(req.params.id);
-  return getTaskById(id).then(data => {
-    res.status(200).json(data);
-  });
+  const id = req.params.id;
+  console.log(id);
+  if (isNaN(id)) {
+    res.status(404).send("Id is not number");
+  } else {
+    return getTaskById(id).then(data => {
+      res.status(200).json(data);
+    });
+  }
 });
 
 app.put("/tasks/:id", (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   const title = req.body.title;
-  return updateTask(title, id).then(data => {
-    res.status(200).json(data);
-  });
+  if (isNaN(id)) {
+    res.status(404).send("Id is not number or no title");
+  } else {
+    return updateTask(title, id).then(data => {
+      res.status(200).json(data);
+    });
+  }
 });
