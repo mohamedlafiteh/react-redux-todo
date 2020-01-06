@@ -11,14 +11,13 @@ class Main extends React.Component {
     this.getTodos();
   }
   getTodos = () => {
-    fetch("http://localhost:3006/tasks")
+    fetch("http://localhost:3006/")
       .then(res => res.json())
       .then(tasks => {
         this.setState({
           todos: tasks
         });
       });
-    console.log(this.state.todos);
   };
 
   handleChange = id => {
@@ -42,7 +41,7 @@ class Main extends React.Component {
     fetch(`http://localhost:3006/tasks/${id}`, deleteTodoRequest)
       .then(res => res.json())
       .then(message => {
-        this.componentDidMount();
+        this.getTodos();
       })
       .catch(err => {
         console.log(err);
@@ -62,7 +61,7 @@ class Main extends React.Component {
     fetch("http://localhost:3006/tasks", newTodo)
       .then(res => res.json())
       .then(data => {
-        this.componentDidMount();
+        this.getTodos();
       })
       .catch(err => {
         console.log(err);

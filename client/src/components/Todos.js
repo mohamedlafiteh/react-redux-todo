@@ -13,6 +13,11 @@ export class Todos extends Component {
   editRow = id => {
     this.setState({ selectedId: id, selected: true });
   };
+  sortedTodos = todos => {
+    console.log("hello mooo " + todos[1]);
+
+    return todos;
+  };
 
   render() {
     return (
@@ -34,7 +39,7 @@ export class Todos extends Component {
         </Table.Header>
 
         <Table.Body>
-          {this.props.todos.map(todos => {
+          {this.sortedTodos(this.props.todos).map(todos => {
             if (todos.id === this.state.selectedId) {
               return (
                 <EditableRow
