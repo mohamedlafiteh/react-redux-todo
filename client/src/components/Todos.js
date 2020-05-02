@@ -13,10 +13,11 @@ export class Todos extends Component {
   editRow = id => {
     this.setState({ selectedId: id, selected: true });
   };
-  sortedTodos = todos => {
-    console.log("hello mooo " + todos[1]);
 
-    return todos;
+  sortToDos = todos => {
+    return todos.sort((firstToDo, secondToDo) => {
+      return firstToDo.id - secondToDo.id;
+    });
   };
 
   render() {
@@ -39,7 +40,7 @@ export class Todos extends Component {
         </Table.Header>
 
         <Table.Body>
-          {this.sortedTodos(this.props.todos).map(todos => {
+          {this.sortToDos(this.props.todos).map(todos => {
             if (todos.id === this.state.selectedId) {
               return (
                 <EditableRow
